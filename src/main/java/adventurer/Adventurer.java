@@ -1,5 +1,7 @@
 package adventurer;
 
+import board.element.Case;
+import board.element.Treasure;
 import lombok.Builder;
 import lombok.Data;
 
@@ -9,7 +11,7 @@ import static adventurer.Direction.*;
 
 @Data
 @Builder
-public class Adventurer {
+public class Adventurer extends Subject {
     private Coordinate position;
     private Coordinate nextPosition;
     private Direction direction;
@@ -35,6 +37,11 @@ public class Adventurer {
         return values()[direction.ordinal() + ordinalChange];
     }
 
+    public void lookAndWalkForward() {
+        goForward();
+        lookForward();
+    }
+
     public void goForward() {
         switch (direction) {
             case NORTH:
@@ -50,7 +57,23 @@ public class Adventurer {
                 nextPosition().goLeft();
                 break;
         }
-        commitMove();
+    }
+
+    public void lookForward() {
+        Case caseForward = watchForward(nextPosition());
+
+        if (caseForward != null && caseForward.isCrossable()) {
+            if (caseForward.isContainingTreasure()) {
+                treasure += ((Treasure) caseForward).getQuantity();
+            }
+            commitMove();
+        } else {
+            rollBackMove();
+        }
+    }
+
+    private void rollBackMove() {
+        nextPosition = position;
     }
 
     public void commitMove() {
@@ -69,7 +92,7 @@ public class Adventurer {
         for (Character movement : movements) {
             switch (movement) {
                 case 'A':
-                    goForward();
+                    lookAndWalkForward();
                     break;
                 case 'G':
                     turnLeft();

@@ -1,5 +1,10 @@
 package adventurer;
 
+import board.Board;
+import board.element.Case;
+import board.element.Land;
+import board.element.Mountain;
+import board.element.Treasure;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,6 +19,7 @@ public class AdventurerTest {
                 .build();
 
         hunter.goForward();
+        hunter.commitMove();
 
         assertThat(hunter.getPosition().getX()).isEqualTo(2);
     }
@@ -26,6 +32,7 @@ public class AdventurerTest {
                 .build();
 
         hunter.goForward();
+        hunter.commitMove();
 
         assertThat(hunter.getPosition().getX()).isEqualTo(1);
     }
@@ -38,6 +45,7 @@ public class AdventurerTest {
                 .build();
 
         hunter.goForward();
+        hunter.commitMove();
 
         assertThat(hunter.getPosition().getY()).isEqualTo(2);
     }
@@ -50,6 +58,7 @@ public class AdventurerTest {
                 .build();
 
         hunter.goForward();
+        hunter.commitMove();
 
         assertThat(hunter.getPosition().getY()).isEqualTo(1);
     }
@@ -88,5 +97,65 @@ public class AdventurerTest {
         hunter.turnLeft();
 
         assertThat(hunter.getDirection()).isEqualTo(Direction.WEST);
+    }
+
+    @Test
+    public void should_not_move_because_of_a_mountain() {
+        Board board = new Board(new Case[2][1]);
+        board.setCase(1, 0, new Mountain());
+        Adventurer hunter = Adventurer.builder()
+                .position(new Coordinate(0, 0))
+                .build();
+        hunter.setNextPosition(new Coordinate(1, 0));
+        hunter.huntOn(board);
+
+
+        hunter.lookForward();
+
+        assertThat(hunter.getPosition()).isEqualTo(new Coordinate(0, 0));
+    }
+
+    @Test
+    public void should_move_because_nothing_block() {
+        Board board = new Board(new Case[2][1]);
+        board.setCase(1, 0, new Land());
+        Adventurer hunter = Adventurer.builder()
+                .position(new Coordinate(0, 0))
+                .build();
+        hunter.setNextPosition(new Coordinate(1, 0));
+        hunter.huntOn(board);
+
+        hunter.lookForward();
+
+        assertThat(hunter.getPosition()).isEqualTo(new Coordinate(1, 0));
+    }
+
+    @Test
+    public void should_move_and_find_a_treasure() {
+        Board board = new Board(new Case[2][1]);
+        board.setCase(1, 0, new Treasure(1));
+        Adventurer hunter = Adventurer.builder()
+                .position(new Coordinate(0, 0))
+                .build();
+        hunter.setNextPosition(new Coordinate(1, 0));
+        hunter.huntOn(board);
+
+        hunter.lookForward();
+
+        assertThat(hunter.getPosition()).isEqualTo(new Coordinate(1, 0));
+        assertThat(hunter.getTreasure()).isEqualTo(1);
+    }
+
+    @Test
+    public void should_not_fall_out_of_the_board() {
+        Adventurer hunter = Adventurer.builder()
+                .position(new Coordinate(1, 0))
+                .build();
+        hunter.setNextPosition(new Coordinate(2, 0));
+        hunter.huntOn(new Board(new Case[2][1]));
+
+        hunter.lookForward();
+
+        assertThat(hunter.getPosition()).isEqualTo(new Coordinate(1, 0));
     }
 }
