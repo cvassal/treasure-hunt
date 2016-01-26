@@ -15,6 +15,7 @@ public class Adventurer extends Subject {
     private Coordinate position;
     private Coordinate nextPosition;
     private Direction direction;
+    private String name = "John DOE";
 
     private List<Character> movements;
 
@@ -102,6 +103,13 @@ public class Adventurer extends Subject {
                     break;
             }
         }
+    }
 
+    @Override
+    public String toString() {
+        return "Hunter : " + name +
+                " on position X : " + position.getX() +
+                ", Y : " + position.getY() +
+                " have " + treasure + " treasure(s)";
     }
 }
