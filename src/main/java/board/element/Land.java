@@ -7,9 +7,15 @@ import lombok.Value;
 @Value
 @Builder
 @AllArgsConstructor
-public class Land extends Case {
+public class Land implements Case {
 
+    @Override
     public boolean isCrossable() {
         return true;
+    }
+
+    @Override
+    public boolean isContainingTreasure() {
+        return false;
     }
 }

@@ -5,11 +5,16 @@ import lombok.Value;
 
 @Value
 @AllArgsConstructor
-public class Treasure extends Case {
+public class Treasure implements Case {
     private int quantity;
 
     @Override
-    boolean isCrossable() {
+    public boolean isCrossable() {
+        return true;
+    }
+
+    @Override
+    public boolean isContainingTreasure() {
         return true;
     }
 }

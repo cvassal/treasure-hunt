@@ -1,5 +1,14 @@
 package board.element;
 
-public class Mountain extends Case {
+public class Mountain implements Case {
 
+    @Override
+    public boolean isCrossable() {
+        return false;
+    }
+
+    @Override
+    public boolean isContainingTreasure() {
+        return false;
+    }
 }

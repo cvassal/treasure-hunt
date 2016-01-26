@@ -1,8 +1,8 @@
 package board.element;
 
-public abstract class Case {
+public interface Case {
 
-    boolean isCrossable() {
-        return false;
-    }
+    boolean isCrossable();
+
+    boolean isContainingTreasure();
 }
