@@ -1,7 +1,7 @@
 package adventurer;
 
 import board.Board;
-import board.element.Case;
+import board.Size;
 import board.element.Land;
 import board.element.Mountain;
 import board.element.Treasure;
@@ -100,8 +100,8 @@ public class AdventurerTest {
     }
 
     @Test
-    public void should_not_move_because_of_a_mountain() {
-        Board board = new Board(new Case[2][1]);
+    public void should_not_move_because_of_a_mountain() throws Exception {
+        Board board = new Board(new Size(2, 1));
         board.setCase(1, 0, new Mountain());
         Adventurer hunter = Adventurer.builder()
                 .position(new Coordinate(0, 0))
@@ -109,15 +109,14 @@ public class AdventurerTest {
         hunter.setNextPosition(new Coordinate(1, 0));
         hunter.huntOn(board);
 
-
         hunter.lookForward();
 
         assertThat(hunter.getPosition()).isEqualTo(new Coordinate(0, 0));
     }
 
     @Test
-    public void should_move_because_nothing_block() {
-        Board board = new Board(new Case[2][1]);
+    public void should_move_because_nothing_block() throws Exception {
+        Board board = new Board(new Size(2, 1));
         board.setCase(1, 0, new Land());
         Adventurer hunter = Adventurer.builder()
                 .position(new Coordinate(0, 0))
@@ -131,8 +130,8 @@ public class AdventurerTest {
     }
 
     @Test
-    public void should_move_and_find_a_treasure() {
-        Board board = new Board(new Case[2][1]);
+    public void should_move_and_find_a_treasure() throws Exception {
+        Board board = new Board(new Size(2, 1));
         board.setCase(1, 0, new Treasure(1));
         Adventurer hunter = Adventurer.builder()
                 .position(new Coordinate(0, 0))
@@ -147,12 +146,12 @@ public class AdventurerTest {
     }
 
     @Test
-    public void should_not_fall_out_of_the_board() {
+    public void should_not_fall_out_of_the_board() throws Exception {
         Adventurer hunter = Adventurer.builder()
                 .position(new Coordinate(1, 0))
                 .build();
         hunter.setNextPosition(new Coordinate(2, 0));
-        hunter.huntOn(new Board(new Case[2][1]));
+        hunter.huntOn(new Board(new Size(2, 1)));
 
         hunter.lookForward();
 
