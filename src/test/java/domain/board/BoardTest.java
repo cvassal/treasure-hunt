@@ -1,6 +1,6 @@
-package board;
+package domain.board;
 
-import board.element.Land;
+import domain.board.element.Land;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

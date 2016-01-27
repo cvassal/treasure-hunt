@@ -1,13 +1,13 @@
-package adventurer;
+package domain.adventurer;
 
-import board.element.Case;
-import board.element.Treasure;
+import domain.board.element.Case;
+import domain.board.element.Treasure;
 import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
 
-import static adventurer.Direction.*;
+import static domain.adventurer.Direction.*;
 
 @Data
 @Builder

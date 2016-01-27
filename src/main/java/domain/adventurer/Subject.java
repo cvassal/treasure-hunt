@@ -1,7 +1,7 @@
-package adventurer;
+package domain.adventurer;
 
-import board.Observer;
-import board.element.Case;
+import domain.board.Observer;
+import domain.board.element.Case;
 
 public class Subject {
     private Observer observer;

@@ -1,8 +1,8 @@
-package board;
+package domain.board;
 
-import adventurer.Coordinate;
-import board.element.Case;
-import board.element.Land;
+import domain.adventurer.Coordinate;
+import domain.board.element.Case;
+import domain.board.element.Land;
 
 public class Board extends Observer {
     private Case[][] boardCases;

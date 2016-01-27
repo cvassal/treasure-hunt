@@ -1,10 +1,10 @@
-package adventurer;
+package domain.adventurer;
 
-import board.Board;
-import board.Size;
-import board.element.Land;
-import board.element.Mountain;
-import board.element.Treasure;
+import domain.board.Board;
+import domain.board.Size;
+import domain.board.element.Land;
+import domain.board.element.Mountain;
+import domain.board.element.Treasure;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

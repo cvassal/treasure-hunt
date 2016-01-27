@@ -1,4 +1,4 @@
-package board.element;
+package domain.board.element;
 
 public interface Case {
 

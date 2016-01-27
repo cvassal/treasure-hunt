@@ -1,4 +1,4 @@
-package adventurer;
+package domain.adventurer;
 
 public enum Direction {
 

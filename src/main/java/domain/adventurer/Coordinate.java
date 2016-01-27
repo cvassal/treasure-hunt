@@ -1,4 +1,4 @@
-package adventurer;
+package domain.adventurer;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,7 +1,7 @@
-package board;
+package domain.board;
 
-import adventurer.Coordinate;
-import board.element.Case;
+import domain.adventurer.Coordinate;
+import domain.board.element.Case;
 
 
 public abstract class Observer {

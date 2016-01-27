@@ -1,11 +1,11 @@
-import adventurer.Adventurer;
-import adventurer.Coordinate;
-import adventurer.Direction;
-import board.Board;
-import board.Size;
-import board.element.Mountain;
-import board.element.Treasure;
 import com.google.common.primitives.Chars;
+import domain.adventurer.Adventurer;
+import domain.adventurer.Coordinate;
+import domain.adventurer.Direction;
+import domain.board.Board;
+import domain.board.Size;
+import domain.board.element.Mountain;
+import domain.board.element.Treasure;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
