@@ -28,19 +28,20 @@ public class Adventurer extends Subject {
         return nextPosition;
     }
 
-    private Direction changeDirection(int ordinalChange) {
-        if (ordinalChange < 0 && direction.ordinal() == 0) {
-            return WEST;
-        } else if (ordinalChange > 0 && direction.ordinal() == 3) {
-            return NORTH;
+    public void goHunt() {
+        for (Character movement : movements) {
+            switch (movement) {
+                case 'A':
+                    lookAndWalkForward();
+                    break;
+                case 'G':
+                    turnLeft();
+                    break;
+                case 'D':
+                    turnRight();
+                    break;
+            }
         }
-
-        return values()[direction.ordinal() + ordinalChange];
-    }
-
-    public void lookAndWalkForward() {
-        goForward();
-        lookForward();
     }
 
     public void goForward() {
@@ -58,6 +59,11 @@ public class Adventurer extends Subject {
                 nextPosition().goLeft();
                 break;
         }
+    }
+
+    public void lookAndWalkForward() {
+        goForward();
+        lookForward();
     }
 
     public void lookForward() {
@@ -82,27 +88,29 @@ public class Adventurer extends Subject {
     }
 
     public void turnRight() {
-        direction = changeDirection(1);
+        direction = getNextDirection();
     }
 
     public void turnLeft() {
-        direction = changeDirection(-1);
+        direction = getPreviousDirection();
     }
 
-    public void goHunt() {
-        for (Character movement : movements) {
-            switch (movement) {
-                case 'A':
-                    lookAndWalkForward();
-                    break;
-                case 'G':
-                    turnLeft();
-                    break;
-                case 'D':
-                    turnRight();
-                    break;
-            }
+    private Direction getNextDirection() {
+        return getDirectionByAddingToOrdinal(1);
+    }
+
+    private Direction getPreviousDirection() {
+        return getDirectionByAddingToOrdinal(-1);
+    }
+
+    private Direction getDirectionByAddingToOrdinal(int ordinalChange) {
+        if (ordinalChange < 0 && direction.ordinal() == 0) {
+            return WEST;
+        } else if (ordinalChange > 0 && direction.ordinal() == 3) {
+            return NORTH;
         }
+
+        return values()[direction.ordinal() + ordinalChange];
     }
 
     @Override
