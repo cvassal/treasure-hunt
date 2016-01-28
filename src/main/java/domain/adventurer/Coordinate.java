@@ -9,6 +9,11 @@ public class Coordinate {
     private int x;
     private int y;
 
+    public static Coordinate parseFromString(String coordinate) {
+        String[] coordinates = coordinate.split("-");
+        return new Coordinate(Integer.parseInt(coordinates[0]), Integer.parseInt(coordinates[1]));
+    }
+
     public void goLeft() {
         setX(changeX(-1));
     }

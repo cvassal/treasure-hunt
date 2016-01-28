@@ -3,15 +3,17 @@ package domain.board;
 import domain.adventurer.Coordinate;
 import domain.board.element.Case;
 import domain.board.element.Land;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 public class Board extends Observer {
     private Case[][] boardCases;
 
-    public Board(Size size) throws Exception {
+    public Board(Size size) {
         initBoard(size);
     }
 
-    private void initBoard(Size size) throws Exception {
+    private void initBoard(Size size) {
         boardCases = new Case[size.getX()][size.getY()];
         for (int x = 0; x <= size.getX() - 1; x++) {
             for (int y = 0; y <= size.getY() - 1; y++) {
@@ -20,12 +22,12 @@ public class Board extends Observer {
         }
     }
 
-    public void setCase(int x, int y, Case boardCase) throws Exception {
-
+    public void setCase(int x, int y, Case boardCase) {
         try {
             boardCases[x][y] = boardCase;
         } catch (Exception e) {
-            throw new Exception("ERROR : " + x + ", " + y + " is out of the board, you won't set nothing here");
+            System.out.println("WARN : " + x + ", " + y + " is out of the board, " +
+                    "you won't set nothing here, this " + boardCase.getClass().getSimpleName() + " will be ignored");
         }
     }
 
@@ -33,9 +35,13 @@ public class Board extends Observer {
         try {
             return boardCases[x][y];
         } catch (Exception e) {
-            System.out.println("End of the board, you won't go there");
+            System.out.println("WARN : End of the board, you won't go there, wait for next move");
             return null;
         }
+    }
+
+    public boolean isEmpty() {
+        return boardCases == null;
     }
 
     @Override
