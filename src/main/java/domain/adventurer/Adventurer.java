@@ -74,6 +74,7 @@ public class Adventurer extends Subject {
                 treasure += ((Treasure) caseForward).takeTreasure();
             }
             commitMove();
+            System.out.println(toString());
         } else {
             rollBackMove();
         }
