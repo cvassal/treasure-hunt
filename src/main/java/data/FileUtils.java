@@ -2,8 +2,9 @@ package data;
 
 import java.io.File;
 
-public class FileUtils {
+public class FileUtils extends ClassLoader {
+
     public File getFileFromClassPath(String fileName) {
-        return new File(getClass().getResource("/" + fileName).getFile());
+        return new File(getResource(fileName).getFile());
     }
 }
