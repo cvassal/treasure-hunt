@@ -18,7 +18,7 @@ public class AdventurerTest {
                 .direction(Direction.EAST)
                 .build();
 
-        hunter.goForward();
+        hunter.setNextPosition();
         hunter.commitMove();
 
         assertThat(hunter.getPosition().getX()).isEqualTo(2);
@@ -31,7 +31,7 @@ public class AdventurerTest {
                 .direction(Direction.WEST)
                 .build();
 
-        hunter.goForward();
+        hunter.setNextPosition();
         hunter.commitMove();
 
         assertThat(hunter.getPosition().getX()).isEqualTo(1);
@@ -44,7 +44,7 @@ public class AdventurerTest {
                 .direction(Direction.SOUTH)
                 .build();
 
-        hunter.goForward();
+        hunter.setNextPosition();
         hunter.commitMove();
 
         assertThat(hunter.getPosition().getY()).isEqualTo(2);
@@ -57,7 +57,7 @@ public class AdventurerTest {
                 .direction(Direction.NORTH)
                 .build();
 
-        hunter.goForward();
+        hunter.setNextPosition();
         hunter.commitMove();
 
         assertThat(hunter.getPosition().getY()).isEqualTo(1);

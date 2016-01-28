@@ -44,7 +44,7 @@ public class Adventurer extends Subject {
         }
     }
 
-    public void goForward() {
+    public void setNextPosition() {
         switch (direction) {
             case NORTH:
                 nextPosition().goUp();
@@ -62,7 +62,7 @@ public class Adventurer extends Subject {
     }
 
     public void lookAndWalkForward() {
-        goForward();
+        setNextPosition();
         lookForward();
     }
 
@@ -71,7 +71,7 @@ public class Adventurer extends Subject {
 
         if (caseForward != null && caseForward.isCrossable()) {
             if (caseForward.isContainingTreasure()) {
-                treasure += ((Treasure) caseForward).getQuantity();
+                treasure += ((Treasure) caseForward).takeTreasure();
             }
             commitMove();
         } else {

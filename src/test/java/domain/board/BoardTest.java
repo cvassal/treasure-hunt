@@ -21,4 +21,12 @@ public class BoardTest {
                 .isInstanceOf(Exception.class)
                 .hasMessage("Board size must not be under 1 x 1");
     }
+
+    @Test
+    public void should_ignore_case_when_out_of_range() {
+        Board board = new Board(new Size(1, 1));
+        board.setCase(2, 2, new Land());
+
+        assertThat(board.isEmpty()).isFalse();
+    }
 }
