@@ -46,4 +46,22 @@ public class TreasureHuntTest {
 
         assertThat(rickHunter.getPosition()).isEqualTo(new Coordinate(0, 1));
     }
+
+    @Test
+    public void should_take_treasure_once() throws Exception {
+        Board board = new Board(new Size(4, 4));
+        board.setCase(1, 0, new Treasure(1));
+        Adventurer rickHunter = Adventurer.builder()
+                .name("Rick Hunter")
+                .direction(Direction.EAST)
+                .position(new Coordinate(0, 0))
+                .movements(Chars.asList('A', 'D', 'A', 'D', 'D', 'A'))
+                .build();
+
+        rickHunter.huntOn(board);
+
+        rickHunter.goHunt();
+
+        assertThat(rickHunter.getTreasure()).isEqualTo(1);
+    }
 }

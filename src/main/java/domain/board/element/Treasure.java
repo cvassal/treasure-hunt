@@ -1,9 +1,9 @@
 package domain.board.element;
 
 import lombok.AllArgsConstructor;
-import lombok.Value;
+import lombok.Data;
 
-@Value
+@Data
 @AllArgsConstructor
 public class Treasure implements Case {
     private int quantity;
@@ -16,5 +16,11 @@ public class Treasure implements Case {
     @Override
     public boolean isContainingTreasure() {
         return true;
+    }
+
+    public int takeTreasure() {
+        int quantityToTake = quantity;
+        quantity = 0;
+        return quantityToTake;
     }
 }
