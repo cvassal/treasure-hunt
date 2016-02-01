@@ -13,8 +13,11 @@ import static domain.adventurer.Direction.*;
 @Builder
 public class Adventurer extends Subject {
     private Coordinate position;
+
     private Coordinate nextPosition;
+
     private Direction direction;
+
     private String name = "John DOE";
 
     private List<Character> movements;
@@ -80,6 +83,16 @@ public class Adventurer extends Subject {
         }
     }
 
+    private Direction getDirectionByAddingToOrdinal(int ordinalChange) {
+        if (ordinalChange < 0 && direction.ordinal() == 0) {
+            return WEST;
+        } else if (ordinalChange > 0 && direction.ordinal() == 3) {
+            return NORTH;
+        }
+
+        return values()[direction.ordinal() + ordinalChange];
+    }
+
     private void rollBackMove() {
         nextPosition = position;
     }
@@ -102,16 +115,6 @@ public class Adventurer extends Subject {
 
     private Direction getPreviousDirection() {
         return getDirectionByAddingToOrdinal(-1);
-    }
-
-    private Direction getDirectionByAddingToOrdinal(int ordinalChange) {
-        if (ordinalChange < 0 && direction.ordinal() == 0) {
-            return WEST;
-        } else if (ordinalChange > 0 && direction.ordinal() == 3) {
-            return NORTH;
-        }
-
-        return values()[direction.ordinal() + ordinalChange];
     }
 
     @Override

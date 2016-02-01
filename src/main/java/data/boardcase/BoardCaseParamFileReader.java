@@ -17,9 +17,9 @@ public class BoardCaseParamFileReader extends BoardCaseFileReader<BoardCase> {
 
     public BoardCase mapToObject(String stringCase) {
         String[] caseProperties = stringCase.split(" ");
+        String[] coordinates;
         int x;
         int y;
-        String[] coordinates;
 
         switch (caseProperties[0]) {
             case "T":

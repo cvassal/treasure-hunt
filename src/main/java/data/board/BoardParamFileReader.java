@@ -15,9 +15,9 @@ public class BoardParamFileReader extends BoardFileReader<Board> {
 
     public Board mapToObject(String stringCase) {
         String[] caseProperties = stringCase.split(" ");
+        String[] coordinates;
         int x;
         int y;
-        String[] coordinates;
 
         switch (caseProperties[0]) {
             case "C":

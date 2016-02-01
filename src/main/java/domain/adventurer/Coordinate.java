@@ -7,6 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class Coordinate {
     private int x;
+
     private int y;
 
     public static Coordinate parseFromString(String coordinate) {
