@@ -8,8 +8,6 @@ import domain.board.Size;
 import domain.board.element.Mountain;
 import domain.board.element.Treasure;
 import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import service.MovementService;
 
 import java.util.List;
@@ -17,13 +15,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TreasureHuntTest {
-
-    @InjectMocks
-    private App app;
-
-    @Mock
-    private MovementService movementService;
-
 
     @Test
     public void should_find_one_treasure() throws Exception {
