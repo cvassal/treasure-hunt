@@ -1,9 +1,9 @@
 package domain.adventurer;
 
-import com.google.common.collect.Maps;
-
-import java.util.Arrays;
 import java.util.Map;
+
+import static com.google.common.collect.Maps.uniqueIndex;
+import static java.util.EnumSet.allOf;
 
 public enum Direction {
     NORTH("N") {
@@ -16,6 +16,11 @@ public enum Direction {
         public Direction turnRight() {
             return EAST;
         }
+
+        @Override
+        public void advance(Coordinate coordinate) {
+            coordinate.goUp();
+        }
     },
     EAST("E") {
         @Override
@@ -26,6 +31,11 @@ public enum Direction {
         @Override
         public Direction turnRight() {
             return SOUTH;
+        }
+
+        @Override
+        public void advance(Coordinate coordinate) {
+            coordinate.goRight();
         }
     },
     SOUTH("S") {
@@ -38,6 +48,11 @@ public enum Direction {
         public Direction turnRight() {
             return WEST;
         }
+
+        @Override
+        public void advance(Coordinate coordinate) {
+            coordinate.goDown();
+        }
     },
     WEST("O") {
         @Override
@@ -49,11 +64,16 @@ public enum Direction {
         public Direction turnRight() {
             return NORTH;
         }
+
+        @Override
+        public void advance(Coordinate coordinate) {
+            coordinate.goLeft();
+        }
     };
 
     private final String directionLetter;
-    private static final Map<String, Direction> LOOKUP = Maps.uniqueIndex(
-            Arrays.asList(Direction.values()),
+    private static final Map<String, Direction> LOOKUP = uniqueIndex(
+            allOf(Direction.class),
             Direction::getDirectionLetter
     );
 
@@ -72,4 +92,6 @@ public enum Direction {
     public abstract Direction turnLeft();
 
     public abstract Direction turnRight();
+
+    public abstract void advance(Coordinate coordinate);
 }

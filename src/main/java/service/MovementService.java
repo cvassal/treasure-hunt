@@ -27,20 +27,7 @@ public class MovementService {
     }
 
     public void setNextPosition() {
-        switch (adventurer.getDirection()) {
-            case NORTH:
-                adventurer.getNextPosition().goUp();
-                break;
-            case EAST:
-                adventurer.getNextPosition().goRight();
-                break;
-            case SOUTH:
-                adventurer.getNextPosition().goDown();
-                break;
-            case WEST:
-                adventurer.getNextPosition().goLeft();
-                break;
-        }
+        adventurer.getDirection().advance(adventurer.getNextPosition());
     }
 
     public void lockStartCase() {
