@@ -10,7 +10,7 @@ public class Subject {
         this.observer = observer;
     }
 
-    public Case watchForward(Coordinate forward) {
-        return observer.watchForward(forward);
+    public Case getCaseAt(Coordinate caseCoordinate) {
+        return observer.watchForward(caseCoordinate);
     }
 }

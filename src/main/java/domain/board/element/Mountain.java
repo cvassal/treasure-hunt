@@ -11,4 +11,17 @@ public class Mountain implements Case {
     public boolean isContainingTreasure() {
         return false;
     }
+
+    @Override
+    public void lock() {
+    }
+
+    @Override
+    public void unlock() {
+    }
+
+    @Override
+    public boolean isUnlock() {
+        return false;
+    }
 }
