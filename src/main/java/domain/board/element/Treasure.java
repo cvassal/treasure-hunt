@@ -1,12 +1,15 @@
 package domain.board.element;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor
 public class Treasure implements Case {
     private int quantity;
+    private boolean isLock;
+
+    public Treasure(int quantity) {
+        this.quantity = quantity;
+    }
 
     @Override
     public boolean isCrossable() {
@@ -22,5 +25,20 @@ public class Treasure implements Case {
         int quantityToTake = quantity;
         quantity = 0;
         return quantityToTake;
+    }
+
+    @Override
+    public void lock() {
+        isLock = true;
+    }
+
+    @Override
+    public void unlock() {
+        isLock = false;
+    }
+
+    @Override
+    public boolean isUnlock() {
+        return !isLock;
     }
 }
