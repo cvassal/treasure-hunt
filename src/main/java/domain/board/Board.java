@@ -1,12 +1,12 @@
 package domain.board;
 
+import java.util.List;
+
 import data.boardcase.BoardCase;
 import domain.adventurer.Coordinate;
 import domain.board.element.Case;
 import domain.board.element.Land;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @NoArgsConstructor
 public class Board extends Observer {
@@ -47,14 +47,13 @@ public class Board extends Observer {
         return boardCases == null;
     }
 
-    public void setBoardCase(BoardCase boardCase) {
+    private void setBoardCase(BoardCase boardCase) {
         Coordinate coordinate = boardCase.getCoordinate();
         setCase(coordinate.getX(), coordinate.getY(), boardCase.getBoardCase());
     }
 
     public void setCases(List<BoardCase> boardCases) {
-        boardCases.stream()
-                .forEach(this::setBoardCase);
+        boardCases.forEach(this::setBoardCase);
     }
 
     @Override
