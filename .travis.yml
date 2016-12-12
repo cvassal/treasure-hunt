@@ -1,3 +1,4 @@
 language : java
-java :
-- 8
+sudo: false
+jdk:
+ - openjdk8
