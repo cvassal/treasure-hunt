@@ -15,19 +15,19 @@ public class Coordinate {
         return new Coordinate(Integer.parseInt(coordinates[0]), Integer.parseInt(coordinates[1]));
     }
 
-    public void goLeft() {
+    void goLeft() {
         setX(changeX(-1));
     }
 
-    public void goRight() {
+    void goRight() {
         setX(changeX(1));
     }
 
-    public void goUp() {
+    void goUp() {
         setY(changeY(-1));
     }
 
-    public void goDown() {
+    void goDown() {
         setY(changeY(1));
     }
 
